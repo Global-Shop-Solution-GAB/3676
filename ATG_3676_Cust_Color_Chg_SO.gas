@@ -1,0 +1,95 @@
+Program.Sub.ScreenSU.Start
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+' Changes the background color on customer fields
+' Sales Order
+' Hook 11565
+' Originally for M&R Engineering
+' JSO
+
+Variable.Local.s3rdPartyFrt.Declare(String)
+Variable.Local.sSql.Declare(String)
+
+
+Function.ODBC.connection!Con.Openconnection(Variable.Ambient.pdsn,Variable.Ambient.PUser,Variable.Ambient.PPass)
+
+
+Function.intrinsic.control.if(Variable.passed.000003.trim,=,"")
+	Function.Intrinsic.Variable.SetProperty("000007","BC","CCCCCC")
+	Function.Intrinsic.Variable.SetProperty("000009","BC","CCCCCC")
+	Function.Intrinsic.Variable.SetProperty("000011","BC","CCCCCC")
+	Function.Intrinsic.Variable.SetProperty("000013","BC","CCCCCC")
+	Function.Intrinsic.Variable.SetProperty("000014","BC","CCCCCC")
+	Function.Intrinsic.Variable.SetProperty("000015","BC","CCCCCC")
+	Function.Intrinsic.Variable.SetProperty("000019","BC","CCCCCC")
+	Function.Intrinsic.Variable.SetProperty("000021","BC","CCCCCC")
+	Function.Intrinsic.Variable.SetProperty("000052","BC","CCCCCC")
+	Function.Intrinsic.Variable.SetProperty("000053","BC","CCCCCC")
+	Function.Intrinsic.Variable.SetProperty("000055","BC","CCCCCC")
+Function.intrinsic.control.else
+	Function.Intrinsic.Variable.SetProperty("000007","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000009","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000011","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000013","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000014","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000015","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000019","BC","CCCCCC")
+	Function.Intrinsic.Variable.SetProperty("000021","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000052","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000053","BC","CCCCCC")
+	Function.Intrinsic.Variable.SetProperty("000055","BC","CCCCCC")
+	Function.Intrinsic.Variable.SetProperty("000019","FC","000000")
+	Function.Intrinsic.Variable.SetProperty("000053","FC","000000")
+	Function.Intrinsic.Variable.SetProperty("000055","FC","000000")
+Function.intrinsic.control.endif
+
+Function.Intrinsic.String.Concat("SELECT THRD_PRTY_FRT_CUST FROM V_CUST_FORM_INFO WHERE CUSTOMER = '",Variable.Passed.000006,"'",Variable.Local.sSql)
+Function.ODBC.Connection!con.openrecordsetro("rst1",Variable.local.sSql)
+Function.Intrinsic.Control.if(Variable.ODBC.Con!rst1.eof,<>,True)
+	Variable.Local.s3rdPartyFrt.Set(Variable.ODBC.Con!rst1.FieldVal!THRD_PRTY_FRT_CUST)
+	Function.Intrinsic.Control.If(Variable.Local.s3rdPartyFrt.Trim,=,"R&B")
+		Function.Intrinsic.Variable.SetProperty("000007","BC","C7CCF8")
+		Function.Intrinsic.Variable.SetProperty("000009","BC","C7CCF8")
+		Function.Intrinsic.Variable.SetProperty("000011","BC","C7CCF8")
+		Function.Intrinsic.Variable.SetProperty("000013","BC","C7CCF8")
+		Function.Intrinsic.Variable.SetProperty("000014","BC","C7CCF8")
+		Function.Intrinsic.Variable.SetProperty("000015","BC","C7CCF8")
+		Function.Intrinsic.Variable.SetProperty("000019","BC","C7CCF8")
+		Function.Intrinsic.Variable.SetProperty("000021","BC","C7CCF8")
+		Function.Intrinsic.Variable.SetProperty("000052","BC","C7CCF8")
+		Function.Intrinsic.Variable.SetProperty("000053","BC","C7CCF8")
+		Function.Intrinsic.Variable.SetProperty("000055","BC","C7CCF8")
+		Function.Intrinsic.Variable.SetProperty("000007","FC","000000")
+		Function.Intrinsic.Variable.SetProperty("000009","FC","000000")
+		Function.Intrinsic.Variable.SetProperty("000011","FC","000000")
+		Function.Intrinsic.Variable.SetProperty("000013","FC","000000")
+		Function.Intrinsic.Variable.SetProperty("000014","FC","000000")
+		Function.Intrinsic.Variable.SetProperty("000015","FC","000000")
+		Function.Intrinsic.Variable.SetProperty("000019","FC","000000")
+		Function.Intrinsic.Variable.SetProperty("000021","FC","000000")
+		Function.Intrinsic.Variable.SetProperty("000052","FC","000000")
+		Function.Intrinsic.Variable.SetProperty("000053","FC","000000")
+		Function.Intrinsic.Variable.SetProperty("000055","FC","000000")
+	Function.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndIf
+
+
+
+
+
+
+
+
+Program.Sub.Main.End
+
+Program.Sub.Comments.Start
+${$0$}$ATG_3676_Cust_Color_Chg_SO$}$RLK$}$4/4/2016
+${$1$}$$}$$}$0$}$11565$}$OES0200A-ORDER-SELECTED-HOOK$}$4/4/2016 9:54:21 AM$}$(Program: ORD200; Screen: OES0200A)
+
+Program.Sub.Comments.End
+
