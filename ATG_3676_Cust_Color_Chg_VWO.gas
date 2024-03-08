@@ -1,0 +1,50 @@
+Program.Sub.ScreenSU.Start
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+' Changes the background color on customer fields
+' Work Order header - view only screen
+' Hooks 13580 (populate) and  13611 (wo-chg)
+' Originally for M&R Engineering
+' JSO
+
+Variable.Local.s3rdPartyFrt.Declare(String)
+Variable.Local.sSql.Declare(String)
+
+Function.Intrinsic.Variable.SetProperty("000025","BC","DEFAULT")
+Function.Intrinsic.Variable.SetProperty("000026","BC","DEFAULT")
+
+Function.ODBC.connection!Con.Openconnection(Variable.Ambient.pdsn,Variable.Ambient.PUser,Variable.Ambient.PPass)
+
+Function.Intrinsic.String.Concat("SELECT THRD_PRTY_FRT_CUST FROM V_CUST_FORM_INFO WHERE CUSTOMER = '",Variable.Passed.000025,"'",Variable.Local.sSql)
+Function.ODBC.Connection!con.openrecordsetro("rst1",Variable.local.sSql)
+Function.Intrinsic.Control.if(Variable.ODBC.Con!rst1.eof,<>,True)
+	Variable.Local.s3rdPartyFrt.Set(Variable.ODBC.Con!rst1.FieldVal!THRD_PRTY_FRT_CUST)
+	Function.Intrinsic.Control.If(Variable.Local.s3rdPartyFrt.Trim,=,"R&B")
+		Function.Intrinsic.Variable.SetProperty("000025","BC","C7CCF8")
+		Function.Intrinsic.Variable.SetProperty("000026","BC","C7CCF8")
+		Function.Intrinsic.Variable.SetProperty("000025","FC","000000")
+		Function.Intrinsic.Variable.SetProperty("000026","FC","000000")
+	Function.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndIf
+
+
+
+
+
+
+
+Program.Sub.Main.End
+
+Program.Sub.Comments.Start
+${$0$}$ATG_3676_Cust_Color_Chg_VWO$}$RLK$}$4/4/2016
+${$1$}$$}$$}$1$}$13611$}$WOS061-WO-CHG-HOOK$}$4/4/2016 9:56:48 AM$}$(Program: WOQUERY; Screen: WOS061)
+
+${$1$}$$}$$}$0$}$13580$}$WOS061-POPULATE-HOOK$}$4/4/2016 9:56:19 AM$}$(Program: WOQUERY; Screen: WOS061)
+
+Program.Sub.Comments.End
+
