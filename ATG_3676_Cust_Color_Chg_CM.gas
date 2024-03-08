@@ -1,0 +1,70 @@
+Program.Sub.ScreenSU.Start
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+' Changes the background color on customer fields
+' Customer Master
+' Hook 14350
+' Originally for M&R Engineering
+' JSO
+
+Variable.Local.s3rdPartyFrt.Declare(String)
+Variable.Local.s3rdPartyFrt.Set(Variable.Passed.000098.trim)
+
+Function.Intrinsic.Control.If(Variable.Local.s3rdPartyFrt,=,"R&B")
+	Function.Intrinsic.Variable.SetProperty("000005","BC","C7CCF8")
+	Function.Intrinsic.Variable.SetProperty("000007","BC","C7CCF8")
+	Function.Intrinsic.Variable.SetProperty("000009","BC","C7CCF8")
+	Function.Intrinsic.Variable.SetProperty("000011","BC","C7CCF8")
+	Function.Intrinsic.Variable.SetProperty("000012","BC","C7CCF8")
+	Function.Intrinsic.Variable.SetProperty("000013","BC","C7CCF8")
+	Function.Intrinsic.Variable.SetProperty("000017","BC","C7CCF8")
+	Function.Intrinsic.Variable.SetProperty("000018","BC","C7CCF8")
+	Function.Intrinsic.Variable.SetProperty("000021","BC","C7CCF8")
+	Function.Intrinsic.Variable.SetProperty("000044","BC","C7CCF8")
+	Function.Intrinsic.Variable.SetProperty("000045","BC","C7CCF8")
+	Function.Intrinsic.Variable.SetProperty("000046","BC","C7CCF8")
+	Function.Intrinsic.Variable.SetProperty("000005","FC","000000")
+	Function.Intrinsic.Variable.SetProperty("000007","FC","000000")
+	Function.Intrinsic.Variable.SetProperty("000009","FC","000000")
+	Function.Intrinsic.Variable.SetProperty("000011","FC","000000")
+	Function.Intrinsic.Variable.SetProperty("000012","FC","000000")
+	Function.Intrinsic.Variable.SetProperty("000013","FC","000000")
+	Function.Intrinsic.Variable.SetProperty("000017","FC","000000")
+	Function.Intrinsic.Variable.SetProperty("000021","FC","000000")
+	Function.Intrinsic.Variable.SetProperty("000044","FC","000000")
+	Function.Intrinsic.Variable.SetProperty("000045","FC","000000")
+	Function.Intrinsic.Variable.SetProperty("000046","FC","000000")
+Function.Intrinsic.Control.Else
+	Function.Intrinsic.Variable.SetProperty("000005","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000007","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000009","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000011","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000012","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000013","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000017","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000018","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000021","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000044","BC","DEFAULT")
+	Function.Intrinsic.Variable.SetProperty("000045","BC","CCCCCC")
+	Function.Intrinsic.Variable.SetProperty("000046","BC","CCCCCC")
+Function.Intrinsic.Control.EndIf
+
+
+
+
+
+
+
+Program.Sub.Main.End
+
+Program.Sub.Comments.Start
+${$0$}$ATG_3676_Cust_Color_Chg_CM$}$RLK$}$4/4/2016
+${$1$}$$}$$}$0$}$14350$}$Populate Hook$}$4/4/2016 9:51:54 AM$}$(Program: AR0020GI; Screen: ARS002A1)
+
+Program.Sub.Comments.End
+
